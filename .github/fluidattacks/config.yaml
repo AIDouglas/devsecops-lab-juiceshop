@@ -1,11 +1,12 @@
 language: EN
 tracing_opt_out: true
 
-# Modo informativo: solo reporta hallazgos, nunca rompe el pipeline
-strict: false
+# Modo estricto: cualquier hallazgo rompe el pipeline
+strict: true
 
 output:
-  format: SARIF
+  format: CSV
+  file_path: fluidattacks-results.csv
 
 sast:
   include:

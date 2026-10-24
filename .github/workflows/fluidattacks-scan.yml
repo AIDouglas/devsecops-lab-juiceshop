@@ -20,6 +20,14 @@ jobs:
         with:
           scan_config_path: .github/fluidattacks/config.yaml
 
+      - name: Subir resultados CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sast-csv-results
+          path: fluidattacks-results.csv
+          if-no-files-found: ignore
+
   sca:
     runs-on: ubuntu-latest
     steps:
@@ -33,6 +41,14 @@ jobs:
         with:
           scan_config_path: .github/fluidattacks/config.yaml
 
+      - name: Subir resultados CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: sca-csv-results
+          path: fluidattacks-results.csv
+          if-no-files-found: ignore
+
   secret-scan:
     runs-on: ubuntu-latest
     steps:
@@ -45,3 +61,11 @@ jobs:
         id: scan
         with:
           scan_config_path: .github/fluidattacks/config.yaml
+
+      - name: Subir resultados CSV
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: secrets-csv-results
+          path: fluidattacks-results.csv
+          if-no-files-found: ignore
