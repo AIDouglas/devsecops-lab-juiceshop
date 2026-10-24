@@ -1,0 +1,47 @@
+name: Fluid Attacks Security Scan
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  sast:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: SAST scan
+        uses: fluidattacks/sast-action@1.3.0
+        id: scan
+        with:
+          scan_config_path: .github/fluidattacks/config.yaml
+
+  sca:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: SCA scan
+        uses: fluidattacks/sca-action@1.2.0
+        id: scan
+        with:
+          scan_config_path: .github/fluidattacks/config.yaml
+
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Secret scan
+        uses: fluidattacks/ss-action@0.3.0
+        id: scan
+        with:
+          scan_config_path: .github/fluidattacks/config.yaml

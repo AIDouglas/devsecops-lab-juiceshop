@@ -1,0 +1,28 @@
+language: EN
+tracing_opt_out: true
+
+# Modo informativo: solo reporta hallazgos, nunca rompe el pipeline
+strict: false
+
+output:
+  format: SARIF
+
+sast:
+  include:
+    - .
+  exclude:
+    - glob(**/node_modules/**)
+    - glob(**/frontend/dist/**)
+    - glob(**/dist/**)
+
+sca:
+  include:
+    - .
+  exclude:
+    - glob(**/node_modules/**)
+
+ss:
+  include:
+    - .
+  exclude:
+    - glob(**/node_modules/**)
