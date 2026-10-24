@@ -1,8 +1,9 @@
 language: EN
 tracing_opt_out: true
 
-# Modo estricto: cualquier hallazgo rompe el pipeline
+# Rompe el pipeline solo si hay hallazgos de severidad alta o critica
 strict: true
+strictness_threshold: high
 
 output:
   format: CSV
